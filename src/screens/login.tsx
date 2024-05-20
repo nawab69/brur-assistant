@@ -15,7 +15,7 @@ import Text from "../components/Text";
 
 
 const schema = yup.object({
-    email: yup.string().email().required(),
+    email: yup.string().email().required('Please Enter your Email'),
     password: yup
         .string()
         .required('Please Enter your password')
@@ -23,8 +23,6 @@ const schema = yup.object({
 
 export const Login = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [loading, setLoading] = useState<boolean>(true)
 
     const [login, { isLoading }] = useLoginMutation()
@@ -92,9 +90,10 @@ export const Login = ({ navigation }: { navigation: any }) => {
             </View>
 
             <View className="flex items-center">
-
                 <Image source={require('../assets/icons/graduation.png')} className="h-40 w-40" tintColor={"rgb(168 85 247)"} />
             </View>
+
+
             <Formik
                 initialValues={{ email: '', password: '' }}
                 validationSchema={schema}

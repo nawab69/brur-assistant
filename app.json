@@ -30,6 +30,12 @@
         {
           "fonts": ["./assets/fonts/**/*.ttf"]
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to allow you to attach them to your form."
+        }
       ]
     ]
   }

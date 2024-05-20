@@ -12,5 +12,5 @@ export const routes = {
   HISTORY: 'HISTORY',
 }
 
-export const baseUrl = 'http://192.168.68.101:4000/api/'
-export const pdfBaseUrl = 'http://192.168.68.101:4000/'
+export const baseUrl = 'http://172.20.10.7:4000/api/'
+export const pdfBaseUrl = 'http://172.20.10.7:4000/'

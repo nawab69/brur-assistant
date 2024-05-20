@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, Modal, } from 'react-native';
+import { View, TouchableOpacity, Image, Modal, } from 'react-native';
 
 interface ISearchProps {
     items: string[];
@@ -10,6 +10,7 @@ interface ISearchProps {
 }
 
 import { Picker } from '@react-native-picker/picker';
+import Text from './Text';
 
 
 export const Search = ({ items, title, selected, onSelect }: ISearchProps) => {
