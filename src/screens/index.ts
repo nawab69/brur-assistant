@@ -1,14 +1,15 @@
-import {routes} from '../constant';
-import {BottomTab} from './bottom-tab';
-import {History} from './history';
-import {Home} from './home';
-import {Login} from './login';
-import {Profile} from './profile';
-import {Register} from './register';
+import { routes } from '../constant'
+import { BottomTab } from './bottom-tab'
+import { History } from './history'
+import { Home } from './home'
+import { Login } from './login'
+import PaymentScreen from './payment'
+import { Profile } from './profile'
+import { Register } from './register'
 
 interface Route {
-  path: string;
-  component: any;
+  path: string
+  component: any
 }
 
 export const Routes: Route[] = [
@@ -32,4 +33,8 @@ export const Routes: Route[] = [
     path: routes.HISTORY,
     component: History,
   },
-];
+  {
+    path: routes.PAYMENT,
+    component: PaymentScreen,
+  },
+]

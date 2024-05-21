@@ -121,19 +121,19 @@ export function FormFillUp({ close }: { close?: any }) {
             return
         }
 
-        if (!year) {
-            toast.dismiss()
-            toast.error('Please select year')
-            setLoading(false)
-            return
-        }
+        // if (!year) {
+        //     toast.dismiss()
+        //     toast.error('Please select year')
+        //     setLoading(false)
+        //     return
+        // }
 
-        if (!semester) {
-            toast.dismiss()
-            toast.error('Please select semester')
-            setLoading(false)
-            return
-        }
+        // if (!semester) {
+        //     toast.dismiss()
+        //     toast.error('Please select semester')
+        //     setLoading(false)
+        //     return
+        // }
 
         if (!examYear) {
             toast.dismiss()
@@ -158,16 +158,16 @@ export function FormFillUp({ close }: { close?: any }) {
 
             if (data) {
                 toast.dismiss()
-                console.log("URL", `${pdfBaseUrl}${data.file}`)
-                Linking.openURL(`${pdfBaseUrl}${data.file}`)
-                toast.success("Form Fillup Payslip Generated Successfully")
+                // console.log("URL", `${pdfBaseUrl}${data.file}`)
+                // Linking.openURL(`${pdfBaseUrl}${data.file}`)
+                toast.success("Form Fill Up Successfully Completed")
             } else {
                 throw new Error('Something went wrong')
             }
         } catch (e) {
             console.log(e)
             toast.dismiss()
-            toast.error('Something went wrong')
+            toast.error(e?.response?.data?.message || 'Something went wrong')
         }
 
         setLoading(false)
@@ -180,9 +180,15 @@ export function FormFillUp({ close }: { close?: any }) {
             <View className="space-y-0">
 
                 <Search title='Form Fillup Type *' items={Object.values(FormFillUpType)} onSelect={(selected) => { setType(selected as FormFillUpType) }} selected={type} />
-                <Search title='Year *' items={Object.values(Year)} onSelect={(selected) => { setYear(selected as Year) }} selected={year} />
-                <Search title='Semester *' items={Object.values(Semester)} onSelect={(selected) => { setSemester(selected as Semester) }} selected={semester} />
                 <Search title='Exam Year *' items={examYears} onSelect={(selected) => { setExamYear(selected) }} selected={examYear} />
+                {
+                    type === FormFillUpType.Improvement && (<>
+                        <Search title='Year *' items={Object.values(Year)} onSelect={(selected) => { setYear(selected as Year) }} selected={year} />
+                        <Search title='Semester *' items={Object.values(Semester)} onSelect={(selected) => { setSemester(selected as Semester) }} selected={semester} />
+                    </>)
+                }
+
+
 
                 {/* Improvement Course Details
                 Three form of  */}
@@ -268,7 +274,7 @@ export function FormFillUp({ close }: { close?: any }) {
 
 
                 {
-                    (type === FormFillUpType.Improvement && improvementCourses.length > 0) || type === FormFillUpType.Regular ? <Button disabled={loading} onPress={generatePaySlip}>Generate Pay Slip</Button> : (<></>)
+                    (type === FormFillUpType.Improvement && improvementCourses.length > 0) || type === FormFillUpType.Regular ? <Button disabled={loading} onPress={generatePaySlip}>Submit</Button> : (<></>)
                 }
 
             </View>

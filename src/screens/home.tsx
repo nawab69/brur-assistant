@@ -15,6 +15,7 @@ import Text from "../components/Text";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../redux/slices/auth/authSlice";
 import { MaterialIcons } from '@expo/vector-icons';
+import Recent from "../components/recent";
 
 export const Home = ({
   navigation
@@ -31,7 +32,6 @@ export const Home = ({
   const gridItems = [
     { title: 'Admission', imageSrc: require('../assets/images/admission.png'), color: 'green', onPress: () => setIsAdmissionOpen(true) },
     { title: 'Form fillup', imageSrc: require('../assets/images/formfillup.png'), color: 'yellow', onPress: () => setIsFormFillupOpen(true) },
-    { title: 'Payment', imageSrc: require('../assets/images/payment-cashless.png'), color: 'blue', onPress: () => setIsPaymentOpen(true) },
     { title: 'Admit Card', imageSrc: require('../assets/images/admit-card.png'), color: 'indigo', onPress: () => setIsAdmitOpen(true) },
     {
       title: 'Payment History', imageSrc: require('../assets/images/payment.png'), color: 'purple', onPress: () => navigation.navigate({
@@ -40,7 +40,6 @@ export const Home = ({
     },
     { title: 'Upload Payslip', imageSrc: require('../assets/images/payslip.png'), color: 'cyan', onPress: () => setIsUploadPayslipOpen(true) },
     { title: 'Result', imageSrc: require('../assets/images/evaluation.png'), color: 'cyan', onPress: () => setIsUploadPayslipOpen(true) },
-    { title: 'Profile', imageSrc: require('../assets/images/resume.png'), color: 'cyan', onPress: () => setIsUploadPayslipOpen(true) },
   ];
 
   const renderItem = (item: any, index: number) => (
@@ -95,7 +94,7 @@ export const Home = ({
 
             <View className="flex flex-row flex-wrap justify-around">
               {gridItems.map((item, index) =>
-                <TouchableOpacity key={index} className="p-4 w-24" onPress={item.onPress}>
+                <TouchableOpacity key={index} className="p-4 w-28" onPress={item.onPress}>
                   <View className={`bg-white rounded-full h-16 w-16 items-center justify-center`}>
                     <Image source={item.imageSrc} className="w-10 h-10" />
                   </View>
@@ -104,43 +103,22 @@ export const Home = ({
               )}
             </View>
           </View>
-          <View className="mt-4">
-            <Text className="text-lg font-bold text-gray-800 ml-4 mb-4">Recent Activity</Text>
-            <View className="gap-4">
-              <View className="flex flex-row justify-between w-full items-center px-8">
-                <View>
-                  <Text className="text-sm text-gray-800">Form Fillup submitted</Text>
-                  <Text className="text-xs text-gray-500">8th May 2024</Text>
-                </View>
-                <TouchableOpacity className=" bg-purple-500  mr-6 px-4 py-2 rounded">
-                  <Text className="text-white font-[Poppins-SemiBold] ">Download</Text>
-                </TouchableOpacity>
-              </View>
-              <View className="flex flex-row justify-between w-full items-center px-8">
-                <View>
-                  <Text className="text-sm text-gray-800">Admission form submitted</Text>
-                  <Text className="text-xs text-gray-500">7th May 2024</Text>
-                </View>
-                <TouchableOpacity className=" bg-purple-500  mr-6 px-4 py-2 rounded">
-                  <Text className="text-white font-[Poppins-SemiBold] ">Download</Text>
-                </TouchableOpacity>
-              </View>
-
-
-            </View>
+          <Text className="mt-2 text-lg font-bold text-gray-800 ml-4 ">Recent Activity</Text>
+          <View className="mt-2 flex items-center justify-center w-full">
+            <Recent />
           </View>
         </View>
       </ScrollView>
 
       <Portal>
         {isAdmissionOpen && (
-          <Sheet snaps={['60%', '95%']} setIsOpen={() => setIsAdmissionOpen(false)}>
+          <Sheet snaps={['40%', '95%']} setIsOpen={() => setIsAdmissionOpen(false)}>
             <Admission />
           </Sheet>
         )}
 
         {isFormFillupOpen && (
-          <Sheet snaps={['60%', '95%']} setIsOpen={() => setIsFormFillupOpen(false)}>
+          <Sheet snaps={['40%', '95%']} setIsOpen={() => setIsFormFillupOpen(false)}>
             <FormFillUp />
           </Sheet>
         )}

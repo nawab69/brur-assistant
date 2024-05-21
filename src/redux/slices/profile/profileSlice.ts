@@ -76,6 +76,27 @@ export const profileSlice = apiSlice.injectEndpoints({
         return error.data.message
       },
     }),
+    getRecentAdmission: builder.query<any, void>({
+      query: () => ({
+        url: '/admissions/recent',
+        method: 'GET',
+      }),
+      transformErrorResponse: (error: any) => {
+        console.log('Error', error)
+        return error.data.message
+      },
+      providesTags: ['Admission'],
+    }),
+    getRecentForm: builder.query<any, void>({
+      query: () => ({
+        url: '/forms/recent',
+        method: 'GET',
+      }),
+      transformErrorResponse: (error: any) => {
+        console.log('Error', error)
+        return error.data.message
+      },
+    }),
   }),
   overrideExisting: true,
 })
@@ -84,4 +105,6 @@ export const {
   useGetProfileQuery,
   useCreateProfileMutation,
   useGetDepartmentQuery,
+  useGetRecentAdmissionQuery,
+  useGetRecentFormQuery,
 } = profileSlice
